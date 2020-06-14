@@ -1,0 +1,37 @@
+version: "3.3"
+
+services:
+  traefik:
+    image: "traefik:v2.0.1"
+    command:
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+      - --providers.docker
+      - --api.insecure
+      - --certificatesresolvers.le.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
+      - --certificatesresolvers.le.acme.email=${LE_EMAIL}
+      - --certificatesresolvers.le.acme.dnschallenge=true
+      - --certificatesresolvers.le.acme.dnschallenge.provider=digitalocean
+      - --certificatesresolvers.le.acme.storage=/acme/acme.json
+      - --certificatesresolvers.le.acme.tlschallenge=true
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    environment:
+      - "DO_AUTH_TOKEN_FILE=/keys/do-auth-token"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./acme:/acme"
+      - "./keys:/keys"
+    labels:
+      - "traefik.http.routers.wildcard.tls.certresolver=le"
+      - "traefik.http.routers.wildcard.tls.domains[0].main=*.${DOMAIN}"
+      - "traefik.http.routers.wildcard.tls.domains[0].sans=${DOMAIN}"
+
+  my-app:
+    image: containous/whoami:v1.3.0
+    labels:
+      - "traefik.http.routers.my-app.rule=HostRegexp(`{subdomain:.+}.${DOMAIN}`)"
+      - "traefik.http.routers.my-app.entrypoints=websecure"
+      - "traefik.http.routers.my-app.tls.certresolver=le"
