@@ -22,6 +22,9 @@ Created a companion wildcard CNAME (*.commons.dbbs.co) pointed at the sub-domain
 
 Syncing configs with DO droplet:
 
+    cp .env.example .env
+    # edited .env to set DOMAIN commons.dbbs.co (use your own domain name)
+    # and the email address I use for letsencrypt
     rsync -a --exclude='.git/' ./ commons.dbbs.co:Commons-Server/2020-06-14/
 
 ### Start Containers
@@ -29,3 +32,8 @@ Syncing configs with DO droplet:
     ssh root@commons.dbbs.co
     cd Commons-Server/2020-06-14
     docker-compose up -d
+    exit
+
+### Test
+
+    https://whoami.commons.dbbs.co
