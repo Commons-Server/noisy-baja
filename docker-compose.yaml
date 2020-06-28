@@ -35,3 +35,5 @@ services:
       - "traefik.http.routers.my-app.rule=HostRegexp(`{subdomain:.+}.${DOMAIN}`)"
       - "traefik.http.routers.my-app.entrypoints=websecure"
       - "traefik.http.routers.my-app.tls.certresolver=le"
+      - "traefik.http.routers.my-insecure-app.rule=HostRegexp(`{subdomain:.+}.${DOMAIN}`)"
+      - "traefik.http.routers.my-insecure-app.entrypoints=web"
