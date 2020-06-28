@@ -29,7 +29,7 @@ Syncing configs with DO droplet:
     cp .env.example .env
     # edited .env to set DOMAIN commons.dbbs.co (use your own domain name)
     # and the email address I use for letsencrypt
-    rsync -a --exclude='.git/' ./ commons.dbbs.co:Commons-Server/noisy-baja/
+    rsync -a --exclude='.git/' ./ root@commons.dbbs.co:Commons-Server/noisy-baja/
 
 ### Start Containers
 
