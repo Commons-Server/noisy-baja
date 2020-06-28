@@ -1,0 +1,15 @@
+version: "3.3"
+
+services:
+  config:
+    image: dobbs/farm
+    environment:
+      DOMAIN: example.com
+      COOKIE_SECRET: "asflkjqpweoriuwpeogdjgbpdofigh"
+      AUTHOR: "Baja Colorado"
+      PASSWORD: "Please Choose A Better Password"
+    user: root
+    command: /bin/sh config/install.sh
+    volumes:
+      - "./examples/friends/:/home/node/config"
+      - "dotwiki:/home/node/.wiki"

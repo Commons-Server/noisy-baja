@@ -1,0 +1,12 @@
+{
+  "admin": "$PASSWORD",
+  "farm": true,
+  "cookieSecret": "$COOKIE_SECRET",
+  "secure_cookie": true,
+  "security_type": "friends",
+  "wikiDomains": {
+    "$DOMAIN": {
+      "id": "/home/node/.wiki/config.owner.json"
+    }
+  }
+}

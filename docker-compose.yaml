@@ -41,7 +41,7 @@ services:
 
   wiki:
     image: dobbs/farm
-    command: "wiki --config /home/node/.wiki/config.json"
+    command: "wiki --config /home/node/.wiki/config-friends.json"
     restart: always
     volumes:
       - "dotwiki:/home/node/.wiki"

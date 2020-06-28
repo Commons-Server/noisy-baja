@@ -1,0 +1,6 @@
+{
+  "name": "$AUTHOR",
+  "friend": {
+    "secret": "$PASSWORD"
+  }
+}
