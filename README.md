@@ -1,4 +1,4 @@
-# Lazy Baja
+# Noisy Baja
 
 A playground for learning Traefik configuration and docker-compose.
 Some chance this will grow up to become the basis for a commons wiki
