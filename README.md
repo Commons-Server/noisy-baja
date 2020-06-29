@@ -19,6 +19,16 @@ IP of new droplet.
 Created a companion wildcard CNAME (*.commons.dbbs.co) pointed at the
 sub-domain.
 
+Created an API token
+(https://cloud.digitalocean.com/account/api/tokens).  Saved the token
+in `./keys/do-auth-token`. For good measure also limited the file
+permissions like so:
+
+    chmod 600 ./keys/do-auth-token
+
+This token does get rsync'd to the droplet so the traefik
+load-balancer can use it for Let's Encrypt's DNS-based challenge.
+
 ### Config
 
 We will setup the example using friends security. Replace all the
