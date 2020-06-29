@@ -1,9 +1,11 @@
 # Noisy Baja
 
-A playground for learning Traefik configuration and docker-compose.
-Some chance this will grow up to become the basis for a commons wiki
-server, but we confine ourselves to a sandbox for now to build some
-confidence in the abstractions we discover.
+A playground for learning how to configure a combination of Federated
+Wiki, Traefik load-balancer, and docker-compose to tie them
+together. Some chance this will grow to become the basis of a
+full-featured commons wiki server, but we confine ourselves to a
+sandbox for now to build some confidence in the configurations and
+abstractions we discover.
 
 # Bootstrapping
 
