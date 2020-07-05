@@ -1,0 +1,9 @@
+version: "3.3"
+
+services:
+  config:
+    image: dobbs/farm
+    command: cp config/config.json .wiki/config.json
+    volumes:
+      - "./examples/hard-coded/:/home/node/config"
+      - "dotwiki:/home/node/.wiki"

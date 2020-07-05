@@ -1,0 +1,6 @@
+{
+  "admin": "Don't use this password",
+  "farm": true,
+  "cookieSecret": "any random string will work",
+  "secure_cookie": true
+}
