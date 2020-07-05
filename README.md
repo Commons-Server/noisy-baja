@@ -14,6 +14,11 @@ abstractions we discover.
 Created a Digital Ocean droplet with the docker template from the
 marketplace.  https://marketplace.digitalocean.com/apps/docker
 
+### Clone sourcecode
+
+    git clone https://github.com/Commons-Server/noisy-baja.git
+    cd noisy-baja
+
 ### DNS
 Created an A record for sub-domain (in my case commons.dbbs.co) to the
 IP of new droplet.
