@@ -1,0 +1,12 @@
+version: "3.3"
+
+services:
+  livecode:
+    image: techstrategies/livecode:9.0.0
+    volumes:
+      - "./examples/livecode/html:/var/www/html"
+      - "dotwiki:/var/www/.wiki"
+    labels:
+      - "traefik.http.routers.livecode.rule=Host(`livecode.${DOMAIN}`)"
+      - "traefik.http.routers.livecode.entrypoints=websecure"
+      - "traefik.http.routers.livecode.tls.certresolver=le"
