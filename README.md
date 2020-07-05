@@ -36,8 +36,7 @@ permissions like so:
 
     chmod 600 ./keys/do-auth-token
 
-This token does get rsync'd to the droplet. The traefik load-balancer
-uses it for Let's Encrypt's DNS-based challenge.
+This token gets rsync'd to the droplet in the step below. It is worth noting that as the ./keys folder has been specified in the .gitignore file, we avoid the risk of checking this file back into GitHub. The traefik load-balancer uses this key for Let's Encrypt's DNS-based challenge.
 
 ### Config
 
