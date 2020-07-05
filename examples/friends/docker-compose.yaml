@@ -3,11 +3,7 @@ version: "3.3"
 services:
   config:
     image: dobbs/farm
-    environment:
-      DOMAIN: example.com
-      COOKIE_SECRET: "asflkjqpweoriuwpeogdjgbpdofigh"
-      AUTHOR: "Baja Colorado"
-      PASSWORD: "Please Choose A Better Password"
+    env_file: ./examples/friends/.env
     user: root
     command: /bin/sh config/install.sh
     volumes:

@@ -19,6 +19,12 @@ marketplace.  https://marketplace.digitalocean.com/apps/docker
     git clone https://github.com/Commons-Server/noisy-baja.git
     cd noisy-baja
 
+### Customize your .env file
+
+    cp ./.env.example .env
+
+Edit `.env` with your own sub-domain and Let's Encrypt email addresses.
+
 ### DNS
 Created an A record for sub-domain (in my case commons.dbbs.co) to the
 IP of new droplet.
@@ -38,14 +44,17 @@ permissions like so:
 
 This token gets rsync'd to the droplet in the step below. It is worth noting that as the ./keys folder has been specified in the .gitignore file, we avoid the risk of checking this file back into GitHub. The traefik load-balancer uses this key for Let's Encrypt's DNS-based challenge.
 
-### Config
+### Wiki Config
 
-We will setup the example using friends security. Replace all the
-values in the `environment` stanza in
-`examples/friends/docker-compose.yaml` with your own DOMAIN,
-COOKIE_SECRET, AUTHOR and PASSWORD. Then rsync the configs to the
-digital ocean droplet.
+We will setup the example using friends security.
 
+    cd examples/friends
+    cp .env.example .env
+
+Edit the `.env` file with your own DOMAIN, COOKIE_SECRET, AUTHOR and
+PASSWORD. Then rsync the configs to the digital ocean droplet.
+
+    cd ../..
     ssh root@$DOMAIN mkdir -p Commons-Server/noisy-baja
     rsync -a --exclude='.git/' ./ root@$DOMAIN:Commons-Server/noisy-baja/
 
@@ -57,12 +66,10 @@ Install the friends configuration
       -f docker-compose.yaml \
       -f examples/friends/docker-compose.yaml \
       run --rm config
-    exit
 
 ### Start Containers
 
-    ssh root@$DOMAIN \
-      "cd Commons-Server/noisy-baja; docker-compose up -d"
+    docker-compose up -d
 
 ### Test
 
