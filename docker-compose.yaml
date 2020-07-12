@@ -8,7 +8,6 @@ services:
       - --entrypoints.web.address=:80
       - --entrypoints.websecure.address=:443
       - --providers.docker
-      - --api.insecure
       - --certificatesresolvers.le.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
       - --certificatesresolvers.le.acme.email=${LE_EMAIL}
       - --certificatesresolvers.le.acme.dnschallenge=true
@@ -29,15 +28,6 @@ services:
       - "traefik.http.routers.wildcard.tls.certresolver=le"
       - "traefik.http.routers.wildcard.tls.domains[0].main=*.${DOMAIN}"
       - "traefik.http.routers.wildcard.tls.domains[0].sans=${DOMAIN}"
-
-  my-app:
-    image: containous/whoami:v1.3.0
-    labels:
-      - "traefik.http.routers.my-app.rule=HostRegexp(`{subdomain:who.+}.${DOMAIN}`)"
-      - "traefik.http.routers.my-app.entrypoints=websecure"
-      - "traefik.http.routers.my-app.tls.certresolver=le"
-      - "traefik.http.routers.my-insecure-app.rule=HostRegexp(`{subdomain:who.+}.${DOMAIN}`)"
-      - "traefik.http.routers.my-insecure-app.entrypoints=web"
 
   wiki:
     image: dobbs/farm
