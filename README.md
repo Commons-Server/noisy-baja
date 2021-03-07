@@ -55,8 +55,9 @@ Edit the `.env` file with your own DOMAIN, COOKIE_SECRET, AUTHOR and
 PASSWORD. Then rsync the configs to the digital ocean droplet.
 
     cd ../..
+    source .env
     ssh root@$DOMAIN mkdir -p Commons-Server/noisy-baja
-    rsync -a --exclude='.git/' ./ root@$DOMAIN:Commons-Server/noisy-baja/
+    rsync -rzP --exclude='.git/' ./ root@$DOMAIN:Commons-Server/noisy-baja/
 
 Install the friends configuration
 
