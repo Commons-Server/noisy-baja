@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   traefik:
-    image: "traefik:v2.0.1"
+    image: "traefik:v2.4.6"
     restart: always
     command:
       - --entrypoints.web.address=:80
@@ -34,13 +34,10 @@ services:
     command: "wiki --config /home/node/.wiki/config.json"
     restart: always
     volumes:
-      - "dotwiki:/home/node/.wiki"
+      - "./.wiki:/home/node/.wiki"
     labels:
       - "traefik.http.routers.wiki.rule=HostRegexp(`{subdomain:.+}.${DOMAIN}`)"
       - "traefik.http.routers.wiki.entrypoints=websecure"
       - "traefik.http.routers.wiki.tls.certresolver=le"
       - "traefik.http.routers.insecure-wiki.rule=HostRegexp(`{subdomain:.+}.${DOMAIN}`)"
       - "traefik.http.routers.insecure-wiki.entrypoints=web"
-
-volumes:
-  dotwiki:

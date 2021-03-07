@@ -8,4 +8,4 @@ services:
     command: /bin/sh config/install.sh
     volumes:
       - "./examples/friends/:/home/node/config"
-      - "dotwiki:/home/node/.wiki"
+      - "./.wiki:/home/node/.wiki"
